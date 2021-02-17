@@ -1,0 +1,41 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastros</title>
+</head>
+<body>
+<div align="center">
+    <h1>Cadastros</h1>
+    <a href="new">Adicionar Pessoa</a>
+    </br>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Sobrenome</th>
+            <th>CPF</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pessoa : ${pessoasList}">
+            <td th:text="${pessoa.id}">Id</td>
+            <td th:text="${pessoa.name}">Nome</td>
+            <td th:text="${pessoa.lastName}">Sobrenome</td>
+            <td th:text="${pessoa.CPF}">CPF</td>
+            <td>
+                <a th:href="@{'/edit/' + ${pessoa.id}}">Edit</a>
+
+                <a th:href="@{'/delete/' + ${pessoa.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>
