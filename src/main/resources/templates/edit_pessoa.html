@@ -3,9 +3,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico"/>
+
     <title>Editar pessoa</title>
+
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+
 </head>
 <body>
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Teste</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link" href="/">Home</a>
+            <li class="nav-item">
+                <a class="nav-link" href="new">Adicionar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"  href="#">Link2</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
     <div align="center">
         <h1>Editar pessoa</h1>
         </br>
@@ -19,15 +48,15 @@
                 <tr>
                 <tr>
                     <td>Nome:</td>
-                    <td><input type="text" th:field="*{name}"> </td>
+                    <td><input type="text" required="required" th:field="*{name}"> </td>
                 </tr>
                 <tr>
                     <td>Sobrenome:</td>
-                    <td><input type="text" th:field="*{last_name}"> </td>
+                    <td><input type="text" required="required" th:field="*{lastName}"> </td>
                 </tr>
                 <tr>
                     <td>CPF:</td>
-                    <td><input type="text" th:field="*{CPF}"> </td>
+                    <td><input type="text" required="required" maxlength="14" minlength="11" th:field="*{CPF}"> </td>
                 </tr>
                 <tr>
                     <td colspan="2"><button type="submit">Salvar</button></td>

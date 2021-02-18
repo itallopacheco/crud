@@ -3,15 +3,76 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico"/>
+
     <title>Cadastros</title>
+
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+
 </head>
 <body>
-<div align="center">
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Teste</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home</a>
+            <li class="nav-item">
+                <a class="nav-link" href="new">Adicionar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"  href="#">Link2</a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+
+<div class="container "align="center">
     <h1>Cadastros</h1>
-    <a href="new">Adicionar Pessoa</a>
     </br>
-    <table border="1" cellpadding="10">
-        <thead>
+
+    <form class="form-inline" th:action="@{/pessoas}" method="GET" >
+        <input class="form-control mr-sm-2" id=" txtSearch" type="text" name="keyword" placeholder="Search" aria-label="Search">
+        <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+
+        <table class="table" border="1">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>CPF</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="pessoa : ${pessoa}">
+                <td th:text="${pessoa.id}">Id</td>
+                <td th:text="${pessoa.name}">Nome</td>
+                <td th:text="${pessoa.lastName}">Sobrenome</td>
+                <td th:text="${pessoa.CPF}">CPF</td>
+                <td>
+                    <a th:href="@{'/edit/' + ${pessoa.id}}">Editar</a>
+                    <a th:href="@{'/delete/' + ${pessoa.id}}">Deletar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </form>
+    </br>
+    <table class="table" border="1">
+        <thead class="thead-dark">
         <tr>
             <th>ID</th>
             <th>Nome</th>
@@ -27,13 +88,14 @@
             <td th:text="${pessoa.lastName}">Sobrenome</td>
             <td th:text="${pessoa.CPF}">CPF</td>
             <td>
-                <a th:href="@{'/edit/' + ${pessoa.id}}">Edit</a>
-
-                <a th:href="@{'/delete/' + ${pessoa.id}}">Delete</a>
+                <a th:href="@{'/edit/' + ${pessoa.id}}">Editar</a>
+                <a th:href="@{'/delete/' + ${pessoa.id}}">Deletar</a>
             </td>
         </tr>
         </tbody>
     </table>
+
+
 
 </div>
 

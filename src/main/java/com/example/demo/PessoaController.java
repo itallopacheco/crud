@@ -3,10 +3,7 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -52,8 +49,21 @@ public class PessoaController {
     public String deletePessoa(@PathVariable(name = "id") Long id) {
         service.delete(id);
         return "redirect:/";
-
     }
 
+    @RequestMapping(value = "pessoa", method = RequestMethod.GET)
+    public String showPessoaByNome (@RequestParam(value = "search", required = false) String nome, Model model){
+        model.addAttribute("search", service.getByName("search"));
+        return "pessoa";
+    }
+    @GetMapping("/pessoas")
+    public String getPessoas (Model model, String keyword){
 
+        if(keyword != null){
+            model.addAttribute("pessoa", service.findByKeyword(keyword));
+        } else {
+            model.addAttribute("pessoa", service.listAll());
+        }
+        return "index";
+    }
 }

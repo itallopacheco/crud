@@ -2,9 +2,34 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="">
+    <meta name="author" content="">
     <title>Adicionar Pessoa</title>
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
 </head>
 <body>
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Teste</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link" href="/">Home</a>
+            <li class="nav-item active">
+                <a class="nav-link" href="new">Adicionar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"  href="#">Link2</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 <div align="center">
     <h1>Adicionar pessoa</h1>
     </br>
@@ -12,15 +37,15 @@
         <table border="0" cellpadding="10">
             <tr>
                 <td>Nome:</td>
-                <td><input type="text" th:field="${pessoa.name}"/></td>
+                <td><input type="text" required="required" th:field="${pessoa.name}"/></td>
             </tr>
             <tr>
                 <td>Sobrenome:</td>
-                <td><input type="text" th:field="${pessoa.lastName}"></td>
+                <td><input type="text" required="required" th:field="${pessoa.lastName}"></td>
             </tr>
             <tr>
                 <td>CPF:</td>
-                <td><input type="text" th:field="${pessoa.CPF}"></td>
+                <td><input type="text" required="required" maxlength="14" minlength="11" th:field="${pessoa.CPF}"></td>
             </tr>
             <tr>
                 <td colspan="2">
@@ -28,9 +53,8 @@
                 </td>
             </tr>
         </table>
-
-
     </form>
+
 </div>
 
 </body>
