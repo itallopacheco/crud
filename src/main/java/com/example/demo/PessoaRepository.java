@@ -9,13 +9,7 @@ import java.util.List;
 
 public interface PessoaRepository extends JpaRepository<Pessoa,Long> {
 
-    public List<Pessoa> findPessoaByName (String Name);
-
-    public List<Pessoa> findPessoaByLastName (String lastName);
-
-    public List<Pessoa> findPessoaByCPF (String CPF);
-
-    @Query (value = "select * from Pessoa where name like keyword% or last_name like keyword%" , nativeQuery = true  )
+    @Query (value = "SELECT * FROM pessoa WHERE name LIKE concat('%', :keyword, '%') " , nativeQuery = true  )
     List<Pessoa> findByKeyword(@Param("keyword") String keyword);
 
 }

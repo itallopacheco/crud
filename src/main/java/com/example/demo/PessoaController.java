@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,20 +51,17 @@ public class PessoaController {
         service.delete(id);
         return "redirect:/";
     }
-
-    @RequestMapping(value = "pessoa", method = RequestMethod.GET)
-    public String showPessoaByNome (@RequestParam(value = "search", required = false) String nome, Model model){
-        model.addAttribute("search", service.getByName("search"));
-        return "pessoa";
-    }
     @GetMapping("/pessoas")
-    public String getPessoas (Model model, String keyword){
+    public String filtrarPessoa(Model model, String keyword){
 
-        if(keyword != null){
-            model.addAttribute("pessoa", service.findByKeyword(keyword));
-        } else {
-            model.addAttribute("pessoa", service.listAll());
+        if (keyword != null){
+            model.addAttribute("pessoasList", service.findByKeyword(keyword));
+        } else{
+            model.addAttribute("pessoasList", service.listAll());
         }
+
         return "index";
     }
+
+
 }

@@ -26,19 +26,8 @@ public class PessoaService {
         pessoaRepository.deleteById(id);
     }
 
-    public List<Pessoa> getByName(String Name){
-        return pessoaRepository.findPessoaByName(Name);
-    }
 
-    public List<Pessoa> getBylastName(String lastName){
-        return pessoaRepository.findPessoaByLastName (lastName);
-    }
-
-    public List<Pessoa> getByCPF(String CPF){
-        return pessoaRepository.findPessoaByCPF(CPF);
-    }
-
-    public List<Pessoa> findByKeyword(String keyword){
+    public List<Pessoa> findByKeyword (String keyword){
         return pessoaRepository.findByKeyword(keyword);
     }
 
