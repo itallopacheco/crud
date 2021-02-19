@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico"/>
+
 
     <title>Cadastros</title>
 
@@ -63,8 +65,14 @@
             <td th:text="${pessoa.lastName}">Sobrenome</td>
             <td th:text="${pessoa.CPF}">CPF</td>
             <td>
-                <a th:href="@{'/edit/' + ${pessoa.id}}"><button type="button" class="btn-primary btn-sm">Editar</button></a>
-                <a th:href="@{'/delete/' + ${pessoa.id}}"><button type="button" class="btn-danger btn-sm">Deletar</button></a>
+
+                <div class="btn-group" role="group" aria-label="...">
+                    <a th:href="@{'/edit/' + ${pessoa.id}}"><button type="button" class="btn btn-primary" >Editar</button></a>
+                    <a th:href="@{'/delete/' + ${pessoa.id}}"><button type="button" class="btn btn-danger ">Deletar</button></a>
+                </div>
+
+
+
             </td>
         </tr>
         </tbody>
