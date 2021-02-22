@@ -2,6 +2,7 @@ package com.example.demo;
 
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,13 +15,6 @@ public class PessoaController {
     @Autowired
     private PessoaService service;
 
-    @RequestMapping("/")
-    public String viewHomePage(Model model) {
-        List<Pessoa> pessoasList = service.listAll();
-        model.addAttribute("pessoasList", pessoasList);
-
-        return "index";
-    }
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String showAddForm(Model model) {
@@ -51,7 +45,7 @@ public class PessoaController {
         service.delete(id);
         return "redirect:/";
     }
-    @GetMapping("/pessoas")
+    @GetMapping("/")
     public String filtrarPessoa(Model model, String keyword){
 
         if (keyword != null){
