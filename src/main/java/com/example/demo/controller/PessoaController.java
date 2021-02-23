@@ -1,14 +1,16 @@
-package com.example.demo;
+package com.example.demo.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
+import com.example.demo.service.PessoaService;
+import com.example.demo.domain.Pessoa;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
+
 
 @Controller
 public class PessoaController {
@@ -56,6 +58,7 @@ public class PessoaController {
 
         return "index";
     }
+
 
 
 }
