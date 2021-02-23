@@ -1,9 +1,12 @@
-package com.example.demo;
+package com.example.demo.service;
 
+import com.example.demo.domain.Pessoa;
+import com.example.demo.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
-import javax.naming.Name;
+
 import java.util.List;
 
 @Service
@@ -30,7 +33,6 @@ public class PessoaService {
     public List<Pessoa> findByKeyword (String keyword){
         return pessoaRepository.findByKeyword(keyword);
     }
-
 
 
 }
