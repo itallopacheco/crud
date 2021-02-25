@@ -13,6 +13,9 @@
     <title>Cadastros</title>
 
     <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+    <svg class="feather">
+        <use xlink:href="static/images/more-horizontal.svg#more-horizontal"/>
+    </svg>
 
 </head>
 <body>
@@ -48,6 +51,7 @@
         <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
     </form>
 
+
     <table class="table" border="1">
         <thead class="thead-dark">
         <tr>
@@ -59,7 +63,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="pessoa:${pessoasList}">
+        <tr th:each="pessoa:${pessoas}">
             <td th:text="${pessoa.id}">Id</td>
             <td th:text="${pessoa.name}">Nome</td>
             <td th:text="${pessoa.lastName}">Sobrenome</td>
@@ -70,14 +74,46 @@
                     <a th:href="@{'/edit/' + ${pessoa.id}}"><button type="button" class="btn btn-primary" >Editar</button></a>
                     <a th:href="@{'/delete/' + ${pessoa.id}}"><button type="button" class="btn btn-danger ">Deletar</button></a>
                 </div>
-
-
-
             </td>
         </tr>
         </tbody>
     </table>
 
+    <nav aria-label="Pagination" th:if="${pessoas.totalPages} &gt; 0">
+        <ul class="pagination justify-content-center font-weight-bold">
+
+            <li class="page-item" th:classappend="${pessoas.number eq 0} ? 'disabled'">
+                <a class="page-link svg-icon"
+                   th:href="@{/pessoas(page=${pessoas.number &lt; 2 ? 1 : pessoas.number})}"
+                   aria-label="Anterior" title="Anterior" data-toggle="tooltip">
+                    <span aria-hidden="true" data-feather="chevrons-left" width="20" height="20">&laquo;</span>
+                </a>
+            </li>
+
+            <li class="page-item" th:classappend="${i eq pessoas.number + 1} ? 'active'"
+                th:each="i : ${#numbers.sequence(pessoas.number +1 ,
+                (pessoas.totalPages > 10 + pessoas.number ? pessoas.number +10 : pessoas.totalPages),1)}">
+                <a class="page-link" th:href="@{/pessoas(page=${i})}" th:text="${i}"
+                   th:title="${'Página' + i}" data-toggle="tolltip"></a>
+            </li>
+
+            <li class="page-item disabled" th:if="${pessoas.number + 10 < pessoas.totalPages}">
+                <a class="page-link svg-icon" href="#">
+                    <span data-feather="more-horizontal" width="20" height="20"> . . .</span>
+                </a>
+            </li>
+
+
+            <li class="page-item" th:classappend="${pessoas.number + 1 eq pessoas.totalPages} ? 'disabled'">
+                <a class="page-link"
+                   th:href="@{/pessoas(page=${pessoas.number + 2})}"
+                   aria-label="Próxima" title="Próxima" data-toggle="tooltip">
+                    <span aria-hidden="true" data-feather="chevrons-right" width="20" height="20"> &raquo;</span>
+                </a>
+            </li>
+
+        </ul>
+    </nav>
 
 
 

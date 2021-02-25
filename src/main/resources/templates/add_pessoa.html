@@ -49,7 +49,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <button type="submit">Salvar</button>
+                    <button id="okButton" type="submit" >Salvar</button>
                 </td>
             </tr>
         </table>
@@ -99,14 +99,16 @@
     }
 
 
-        document.getElementById('teste').addEventListener('submit', function (event){
-            if  (validarCPF(document.querySelector("#CPF").value) == true) {
-                document.getElementById('teste').submit();
-            }else
-                {
-                alert("Insira um cpf valido");
-            }
-        })
+
+
+    document.getElementById('teste').onsubmit = function () {
+        if (validarCPF(document.querySelector("#CPF").value) == true ) {
+            document.getElementById('teste').submit();
+        } else {
+            alert("Insira um cpf valido");
+            return false;
+        }
+    }
 
 
 
